@@ -1,6 +1,6 @@
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Card = () => {
   const [data, setData] = useState([]);
@@ -25,7 +25,14 @@ const Card = () => {
         {data.length > 0 ? (
           <ul>
             {data.map(item => (
-              <li key={item.id}>{item.nombre}</li>
+              
+              <li key={item.id}>
+                <h1> Dentista {item.id} : 
+                 <Link to={`/Detail/${item.id}`}>{item.name}</Link> {/* Aquí se coloca el contenido del enlace */}
+                 </h1>
+                 <h2>Nombre de usuario:{item.username}</h2>
+                 <button onClick={addFav} className="favButton">Add fav</button>
+              </li>
             ))}
           </ul>
         ) : (
@@ -33,12 +40,9 @@ const Card = () => {
         )}
       </div>
       
-      {/* En cada card deberán mostrar en name - username y el id */}
-
       {/* No debes olvidar que la Card a su vez servirá como Link hacia la página de detalle */}
-
       {/* Además, deberán integrar la lógica para guardar cada Card en el localStorage */}
-      <button onClick={addFav} className="favButton">Add fav</button>
+     
     </div>
   );
 };

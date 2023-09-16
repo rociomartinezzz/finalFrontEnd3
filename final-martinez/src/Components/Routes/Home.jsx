@@ -1,5 +1,6 @@
 
-import React from 'react'
+import React from 'react';
+import Card from '../Card';
 
 const Home = () => {
 
@@ -7,7 +8,7 @@ const Home = () => {
 
   return (
     <div>
-    
+    <Card/>
     </div>
   )
 }
