@@ -32,6 +32,9 @@ const Detail = () => {
       <p>Nombre: {user.name}</p>
       <p>Email: {user.email}</p>
       <p>Direccion: {user.address.street}, {user.address.suite}, {user.address.city}, {user.address.zipcode}</p>
+      <p>Telefono: {user.phone}</p>
+      <p>Sitio Web: {user.website}</p>
+      
     </div>
   );
 };

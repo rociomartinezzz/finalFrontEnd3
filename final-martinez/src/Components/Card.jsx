@@ -15,9 +15,24 @@ const Card = () => {
       });
   }, []);
 
-  const addFav = () => {
-    // Aquí iría la lógica para agregar la Card en el localStorage
-  }
+  const addFav = (id, name, username) => {
+    const cardData = {
+      id,
+      name,
+      username,
+    };
+  
+    const favoritesList = JSON.parse(localStorage.getItem('favoritos')) || [];
+  
+    const exists = favoritesList.some(favorite => favorite.id === id);
+    if (!exists) {
+      favoritesList.push(cardData);
+      localStorage.setItem('favoritos', JSON.stringify(favoritesList));
+      alert('Usted ha agregado este dentista a sus favoritos');
+    } else {
+      alert('Este dentista ya está en sus favoritos');
+    }
+  };
 
   return (
     <div className="card">
@@ -28,10 +43,10 @@ const Card = () => {
               
               <li key={item.id}>
                 <h1> Dentista {item.id} : 
-                 <Link to={`/Detail/${item.id}`}>{item.name}</Link> {/* Aquí se coloca el contenido del enlace */}
+                 <Link to={`/Detail/${item.id}`}>{item.name}</Link> 
                  </h1>
                  <h2>Nombre de usuario:{item.username}</h2>
-                 <button onClick={addFav} className="favButton">Add fav</button>
+                 <button onClick={() => addFav(item.id, item.name, item.username)} className="favButton">Add fav</button>
               </li>
             ))}
           </ul>
@@ -39,9 +54,6 @@ const Card = () => {
           <p>No hay datos disponibles</p>
         )}
       </div>
-      
-      {/* No debes olvidar que la Card a su vez servirá como Link hacia la página de detalle */}
-      {/* Además, deberán integrar la lógica para guardar cada Card en el localStorage */}
      
     </div>
   );
